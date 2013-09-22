@@ -1,0 +1,27 @@
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'jetty'
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  providedCompile 'javax.servlet:servlet-api:2.5'
+  compile 'org.springframework:spring-webmvc:3.2.2.RELEASE'
+  runtime 'javax.servlet:jstl:1.1.2'
+  testCompile ('org.springframework:spring-test:3.2.2.RELEASE', 'junit:junit:4.11')
+}
+
+jettyRunWar.contextPath = ''
+
+task createJavaProject << {
+  sourceSets*.java.srcDirs*.each{ it.mkdirs()}
+  sourceSets*.resources.srcDirs*.each { it.mkdirs()}
+}
+
+task createWebProject(dependsOn: 'createJavaProject')<< {
+  def webAppDir = file("$webAppDirName")
+  webAppDir.mkdirs()
+}

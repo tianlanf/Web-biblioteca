@@ -1,0 +1,15 @@
+.invoice_table{
+    /*width:50%;*/
+    border: 1px solid;
+    border-collapse:collapse;
+    text-align: center;
+}
+
+.invoice_table td{
+    border: 1px solid;
+    padding:3px;
+}
+
+.invoice_table th{
+    background-color:aqua;
+}
